@@ -1,0 +1,6 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_demo.dart
+ASSET_PREFIX=demo
+BUNDLE_NAME=Bkav eContract Demo
+BUNDLE_DISPLAY_NAME=Bkav eContract Demo

@@ -1,0 +1,840 @@
+@startuml
+set namespaceSeparator ::
+class "e_contract::ui::contract::show_history_page.dart::HistoryContract" {
+  +String objectGuid
+  {static} +Route<dynamic> route()
+  +Widget build()
+}
+
+class "e_contract::ui::contract::sign_contract_page.dart::SignContractPage" {
+  +String objectGuid
+  +int indexSection
+  {static} +Route<dynamic> route()
+  +Widget build()
+}
+
+class "e_contract::ui::contract::show_list_text_page.dart::ShowListTextPage" {
+  +List<TextDetail> listText
+  +int indexSelected
+  {static} +Route<dynamic> route()
+  +Widget build()
+  +Widget itemText()
+}
+
+
+class "e_contract::ui::contract::contract_from::contract_from_manager.dart::ContractFromManager" {
+  {static} +Widget showListContractsFrom()
+}
+
+class "e_contract::ui::contract::contract_to::contract_to_manager.dart::ContractToManager" {
+  {static} +Widget showListContractsTo()
+}
+
+class "e_contract::ui::contract::list_contracts_page.dart::ListContracts" {
+  +List<ContractUIModel> list
+  +String textTitle
+  +bool isFrom
+  +TextEditingController searchController
+  +Widget build()
+}
+
+"e_contract::ui::contract::list_contracts_page.dart::ListContracts" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "e_contract::ui::contract::detail_a_contract_page.dart::DetailAContract" {
+  +ContractUIModel contractUIModel
+  {static} +Route<dynamic> route()
+  +Widget build()
+  +Widget bkavTextStyle()
+  +Widget itemDocument()
+}
+
+"e_contract::ui::contract::detail_a_contract_page.dart::DetailAContract" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+
+class "e_contract::ui::contract::copy_address_sign_page.dart::CopyAddressSignPage" {
+  +String objectGuid
+  {static} +Route<dynamic> route()
+  +Widget build()
+}
+
+class "e_contract::ui::contract::show_document_page.dart::ShowDocumentPage" {
+  +String objectGuid
+  +bool isSignDocumentPage
+  +String fileName
+  +List<TextDetail>? listText
+  +int indexSelected
+  +CarouselController carouselController
+  {static} +Route<dynamic> route()
+  +Widget build()
+  +Widget showDocument()
+  +dynamic refreshDocument()
+}
+
+"e_contract::ui::contract::show_document_page.dart::ShowDocumentPage" o-- "carousel_slider::carousel_controller.dart::CarouselController"
+
+class "e_contract::ui::loading_page.dart::LoadingPage" {
+  {static} +Route<dynamic> route()
+  +State<LoadingPage> createState()
+}
+
+class "e_contract::ui::loading_page.dart::_LoadingPageState" {
+  -Timer? _timer
+  +double percent
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+class "e_contract::ui::home_page.dart::HomePage" {
+  {static} +Route<dynamic> route()
+  +Widget build()
+  -dynamic _bottomNavigationBarItem()
+}
+
+class "e_contract::ui::account::login_page.dart::LoginPage" {
+  {static} +Route<dynamic> route()
+  +State<LoginPage> createState()
+}
+
+class "e_contract::ui::account::login_page.dart::_LoginPageState" {
+  -GlobalKey<FormState> _formKey
+  -TextEditingController _inputUsernameController
+  -TextEditingController _inputPasswordController
+  -bool _isDialogShowing
+  -FocusNode _focusNodeName
+  -FocusNode _focusNodePassword
+  +Widget build()
+  -Widget _loginForm()
+  -Widget _notifiLoginError()
+  -Widget _usernameField()
+  -Widget _passwordField()
+  -Widget _checkboxRememberLogin()
+  -Widget _forgetPassword()
+  -Widget _loginButton()
+  -Widget _rowButton()
+}
+
+"e_contract::ui::account::login_page.dart::_LoginPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "e_contract::constants::api_constains.dart::ApiConstants" {
+  {static} +String domainApi
+  {static} +String unEncodedPathLogin
+  {static} +String unEncodedPathAdvanceSearch
+  {static} +String unEncodedPathViewDetail
+  {static} +String unEncodePathProfileText
+  {static} +String unEncodePathHistoryAProfile
+  {static} +String unEncodePathCopyAddress
+  {static} +String unEncodePathEasySearchApp
+}
+
+class "e_contract::constants::assets.dart::IconAsset" {
+  {static} +String iCons
+  {static} +String eyeOff
+  {static} +String faceId
+  {static} +String icBack
+  {static} +String icBackgroundSign
+  {static} +String icClear
+  {static} +String icEye
+  {static} +String icLogo
+  {static} +String icSign
+  {static} +String touchIc
+  {static} +String backgroundClear
+  {static} +String icCopy
+  {static} +String icHistory
+  {static} +String icKy
+}
+
+class "e_contract::constants::assets.dart::ImageAsset" {
+  {static} +String iMages
+  {static} +String flashPicture
+  {static} +String loginBackground
+}
+
+class "e_contract::constants::shared_preferences_key.dart::SharedPreferencesKey" {
+  {static} +String userName
+  {static} +String debugLogin
+  {static} +String token
+}
+
+class "e_contract::constants::contract_constants.dart::ContractConstants" {
+  {static} +int using
+  {static} +int stopUsing
+  {static} +int deleted
+  {static} +int newlyCreated
+  {static} +int waitingSign
+  {static} +int refusingSign
+  {static} +int cancelled
+  {static} +int completed
+  {static} +int notSeen
+  {static} +int seen
+  {static} +int newSigner
+  {static} +int waitingSigner
+  {static} +int signed
+  {static} +int notSigned
+  {static} +int unknown
+  {static} +int optSign
+  {static} +int hsmUnitSign
+  {static} +int hsmPersonalSign
+  {static} +int usbTokenUnitSign
+  {static} +int usbTokenPersonalSign
+  {static} +int hsmSign
+  {static} +int usbTokenSign
+  {static} +String copyPageSignKey
+  {static} +String editKey
+  {static} +String restoreKey
+  {static} +String signKey
+  {static} +String downloadKey
+  {static} +String viewHistoryKey
+  {static} +String cancelTransferSignKey
+}
+
+class "e_contract::constants::color.dart::AppColor" {
+  {static} +Color hintColorFormInputPass
+}
+
+"e_contract::constants::color.dart::AppColor" o-- "dart::ui::Color"
+
+class "e_contract::constants::config_build.dart::ConfigBuild" {
+  {static} +bool isFakeUserRepo
+}
+
+class "e_contract::stores::home::home_bloc.dart::BottomNavigationBloc" {
+  +Repository repository
+  +int currentIndex
+  -void _appStarted()
+  -void _pageTapped()
+  -void _setContractUIModel()
+}
+
+"e_contract::stores::home::home_bloc.dart::BottomNavigationBloc" o-- "e_contract::data::repository.dart::Repository"
+
+class "e_contract::stores::home::home_bloc.dart::BottomNavigationEvent" {
+  +List<Object?> props
+}
+
+
+class "e_contract::stores::home::home_bloc.dart::AppStarted" {
+}
+
+"e_contract::stores::home::home_bloc.dart::BottomNavigationEvent" <|-- "e_contract::stores::home::home_bloc.dart::AppStarted"
+
+class "e_contract::stores::home::home_bloc.dart::PageTapped" {
+  +int index
+  +List<Object?> props
+}
+
+"e_contract::stores::home::home_bloc.dart::BottomNavigationEvent" <|-- "e_contract::stores::home::home_bloc.dart::PageTapped"
+
+class "e_contract::stores::home::home_bloc.dart::ClickItemContractFromEvent" {
+  +ContractUIModel contractUIModel
+  +List<Object?> props
+}
+
+"e_contract::stores::home::home_bloc.dart::ClickItemContractFromEvent" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"e_contract::stores::home::home_bloc.dart::BottomNavigationEvent" <|-- "e_contract::stores::home::home_bloc.dart::ClickItemContractFromEvent"
+
+class "e_contract::stores::home::home_bloc.dart::BottomNavigationState" {
+  +int currentIndex
+  +ContractUIModel? contractUIModel
+  +List<Object?> props
+  +BottomNavigationState copyWith()
+}
+
+"e_contract::stores::home::home_bloc.dart::BottomNavigationState" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"e_contract::stores::bloc_state.dart::BlocState" <|-- "e_contract::stores::home::home_bloc.dart::BottomNavigationState"
+
+class "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractBloc" {
+  +Repository repository
+  +String objectGuid
+  -void _startShowCopyAddress()
+}
+
+"e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractBloc" o-- "e_contract::data::repository.dart::Repository"
+"bloc::src::bloc.dart::Bloc" <|-- "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractBloc"
+
+class "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractEvent"
+
+class "e_contract::stores::contract::copy_address_a_contract_bloc.dart::StartCopyAddress" {
+}
+
+"e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractEvent" <|-- "e_contract::stores::contract::copy_address_a_contract_bloc.dart::StartCopyAddress"
+
+class "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractState" {
+  +List<CopyAddressModel> copyAddressList
+  +List<Object?> props
+  +CopyAddressAContractState copyWith()
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::copy_address_a_contract_bloc.dart::CopyAddressAContractState"
+
+class "e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractBloc" {
+  +Repository repository
+  +ContractUIModel contractUIModel
+  -void _showDetailContract()
+}
+
+"e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractBloc" o-- "e_contract::data::repository.dart::Repository"
+"e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractBloc" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"bloc::src::bloc.dart::Bloc" <|-- "e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractBloc"
+
+class "e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractEvent"
+
+class "e_contract::stores::contract::detail_a_contract_bloc.dart::ClickAContractShowDetailEvent" {
+  +ContractUIModel contractUIModel
+  +List<Object> props
+}
+
+"e_contract::stores::contract::detail_a_contract_bloc.dart::ClickAContractShowDetailEvent" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractEvent" <|-- "e_contract::stores::contract::detail_a_contract_bloc.dart::ClickAContractShowDetailEvent"
+
+class "e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractState" {
+  +ContractUIModel? contractUIModel
+  +List<Object?> props
+  +DetailAContractState copyWith()
+}
+
+"e_contract::stores::contract::detail_a_contract_bloc.dart::DetailAContractState" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+class "e_contract::stores::contract::show_dcument_bloc.dart::DocumentBloc" {
+  +Repository repository
+  +String objectGuid
+  +bool isSignDocumentPage
+  -void _getListTextDetail()
+  -FutureOr<void> _showDocument()
+  -void _signDocument()
+  -void _refreshDocument()
+}
+
+"e_contract::stores::contract::show_dcument_bloc.dart::DocumentBloc" o-- "e_contract::data::repository.dart::Repository"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::GetListTextDetailEvent" {
+}
+
+"e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::GetListTextDetailEvent"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::ShowDocumentEvent" {
+  +String objectGuid
+  +List<Object?> props
+}
+
+"e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::ShowDocumentEvent"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::RefreshDocumentEvent" {
+}
+
+"e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::RefreshDocumentEvent"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::SignDocumentEvent" {
+}
+
+"e_contract::stores::contract::show_dcument_bloc.dart::DocumentEvent" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::SignDocumentEvent"
+
+class "e_contract::stores::contract::show_dcument_bloc.dart::DocumentState" {
+  +String base64
+  +List<TextDetail> listText
+  +List<Object?> props
+  +DocumentState copyWith()
+}
+
+"e_contract::stores::bloc_state.dart::BlocState" <|-- "e_contract::stores::contract::show_dcument_bloc.dart::DocumentState"
+
+class "e_contract::stores::contract::contract_from_bloc.dart::ContractFromBloc" {
+  +Repository repository
+  -StreamSubscription<List<ContractDocFrom>> _listContractFromSubscription
+  -void _getListContractFrom()
+  +Future<void> close()
+  -void _showDetailContract()
+}
+
+"e_contract::stores::contract::contract_from_bloc.dart::ContractFromBloc" o-- "e_contract::data::repository.dart::Repository"
+"e_contract::stores::contract::contract_from_bloc.dart::ContractFromBloc" o-- "dart::async::StreamSubscription<List<ContractDocFrom>>"
+
+class "e_contract::stores::contract::contract_from_bloc.dart::ContractFromEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::contract_from_bloc.dart::ContractFromEvent"
+
+class "e_contract::stores::contract::contract_from_bloc.dart::GetListContractFromEvent" {
+  +List<ContractDocFrom> list
+  +List<Object> props
+}
+
+"e_contract::stores::contract::contract_from_bloc.dart::ContractFromEvent" <|-- "e_contract::stores::contract::contract_from_bloc.dart::GetListContractFromEvent"
+
+class "e_contract::stores::contract::contract_from_bloc.dart::ClickAContractShowDetailEvent" {
+  +ContractUIModel contractUIModel
+  +List<Object> props
+}
+
+"e_contract::stores::contract::contract_from_bloc.dart::ClickAContractShowDetailEvent" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"e_contract::stores::contract::contract_from_bloc.dart::ContractFromEvent" <|-- "e_contract::stores::contract::contract_from_bloc.dart::ClickAContractShowDetailEvent"
+
+class "e_contract::stores::contract::contract_from_bloc.dart::ContractFromState" {
+  +List<ContractUIModel> listContracts
+  +List<Object?> props
+  +ContractFromState copyWith()
+}
+
+"e_contract::stores::bloc_state.dart::BlocState" <|-- "e_contract::stores::contract::contract_from_bloc.dart::ContractFromState"
+
+class "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractBloc" {
+  +Repository repository
+  +String objectGuid
+  -void _startShowHistory()
+}
+
+"e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractBloc" o-- "e_contract::data::repository.dart::Repository"
+"bloc::src::bloc.dart::Bloc" <|-- "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractBloc"
+
+class "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractEvent"
+
+class "e_contract::stores::contract::history_a_contract_bloc.dart::StartShowHistory" {
+}
+
+"e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractEvent" <|-- "e_contract::stores::contract::history_a_contract_bloc.dart::StartShowHistory"
+
+class "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractState" {
+  +List<HistoryModel> historyList
+  +List<Object?> props
+  +HistoryAContractState copyWith()
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::contract::history_a_contract_bloc.dart::HistoryAContractState"
+
+abstract class "e_contract::stores::bloc_state.dart::BlocState" {
+}
+
+class "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel" {
+  +String objectGuid
+  +String profileName
+  +String profileTypeName
+  +Map<String, int> listSignerStatus
+  +String deadLine
+  +int status
+  +String nameCreate
+  +String fullNameCreate
+  +String profileCode
+  +String sourceName
+  +String createdDate
+  +String signDeadline
+  +List<TextDetail> listTextDetail
+  +bool isShowButtonSign
+}
+
+class "e_contract::stores::ui_models::document_ui_model.dart::DoccumentModel" {
+  +String base64
+}
+
+class "e_contract::stores::account::login_bloc.dart::LoginBloc" {
+  +Repository repository
+  -void _rememberLoginChanged()
+  -void _loginBiometric()
+  -void _loginSubmitted()
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginBloc" o-- "e_contract::data::repository.dart::Repository"
+
+class "e_contract::stores::account::login_bloc.dart::LoginEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::account::login_bloc.dart::LoginEvent"
+
+class "e_contract::stores::account::login_bloc.dart::LoginUserNameChanged" {
+  +String userName
+  +List<Object?> props
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginEvent" <|-- "e_contract::stores::account::login_bloc.dart::LoginUserNameChanged"
+
+class "e_contract::stores::account::login_bloc.dart::LoginPasswordChanged" {
+  +String password
+  +List<Object?> props
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginEvent" <|-- "e_contract::stores::account::login_bloc.dart::LoginPasswordChanged"
+
+class "e_contract::stores::account::login_bloc.dart::RememberLoginChanged" {
+  +bool isRememberLogin
+  +List<Object?> props
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginEvent" <|-- "e_contract::stores::account::login_bloc.dart::RememberLoginChanged"
+
+class "e_contract::stores::account::login_bloc.dart::LoginSubmitted" {
+  +String username
+  +String password
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginEvent" <|-- "e_contract::stores::account::login_bloc.dart::LoginSubmitted"
+
+class "e_contract::stores::account::login_bloc.dart::LoginBiometric" {
+  +String username
+  +BiometricType biometricType
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginEvent" <|-- "e_contract::stores::account::login_bloc.dart::LoginBiometric"
+
+class "e_contract::stores::account::login_bloc.dart::LoginState" {
+  +String username
+  +String password
+  +FormSubmissionStatus formStatus
+  +bool isRememberLogin
+  +List<Object?> props
+  +String isValidUsername
+  +String isValidPassword
+  +LoginState copyWith()
+}
+
+"e_contract::stores::account::login_bloc.dart::LoginState" o-- "e_contract::utils::form_submission_status.dart::FormSubmissionStatus"
+"e_contract::stores::bloc_state.dart::BlocState" <|-- "e_contract::stores::account::login_bloc.dart::LoginState"
+
+abstract class "e_contract::stores::bloc_event.dart::BlocEvent" {
+}
+
+"equatable::src::equatable.dart::Equatable" <|-- "e_contract::stores::bloc_event.dart::BlocEvent"
+
+class "e_contract::stores::authentication::authentication_event.dart::AuthenticationEvent" {
+  +List<Object?> props
+}
+
+"e_contract::stores::bloc_event.dart::BlocEvent" <|-- "e_contract::stores::authentication::authentication_event.dart::AuthenticationEvent"
+
+class "e_contract::stores::authentication::authentication_event.dart::AuthenticationStatusChanged" {
+  +AuthenticationStatus status
+  +List<Object> props
+}
+
+"e_contract::stores::authentication::authentication_event.dart::AuthenticationStatusChanged" o-- "e_contract::data::repository.dart::AuthenticationStatus"
+"e_contract::stores::authentication::authentication_event.dart::AuthenticationEvent" <|-- "e_contract::stores::authentication::authentication_event.dart::AuthenticationStatusChanged"
+
+class "e_contract::stores::authentication::authentication_bloc.dart::AuthenticationBloc" {
+  -Repository _repository
+  -StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription
+  -void _onAuthenticationStatusChanged()
+  +Future<void> close()
+  -Future<UserInfo?> _getUserinfo()
+}
+
+"e_contract::stores::authentication::authentication_bloc.dart::AuthenticationBloc" o-- "e_contract::data::repository.dart::Repository"
+"e_contract::stores::authentication::authentication_bloc.dart::AuthenticationBloc" o-- "dart::async::StreamSubscription<AuthenticationStatus>"
+"bloc::src::bloc.dart::Bloc" <|-- "e_contract::stores::authentication::authentication_bloc.dart::AuthenticationBloc"
+
+class "e_contract::stores::authentication::authentication_state.dart::AuthenticationState" {
+  +AuthenticationStatus status
+  +UserInfo? userInfo
+  +List<Object?> props
+}
+
+"e_contract::stores::authentication::authentication_state.dart::AuthenticationState" o-- "e_contract::data::repository.dart::AuthenticationStatus"
+"e_contract::stores::authentication::authentication_state.dart::AuthenticationState" o-- "e_contract::data::entity::user_info.dart::UserInfo"
+"e_contract::stores::bloc_state.dart::BlocState" <|-- "e_contract::stores::authentication::authentication_state.dart::AuthenticationState"
+
+class "e_contract::utils::utils.dart::Utils" {
+  {static} +Future<bool> isBiometrics()
+  {static} +Future<BiometricType> isBiometricSupport()
+  {static} +Future<bool> checkAuthenticateBiometric()
+  {static} +Widget bkavTextSignerStyle()
+  {static} +String showTitleName()
+  {static} +Text showTextContractStatus()
+}
+
+class "e_contract::utils::utils.dart::BkavBehavior" {
+  +Widget buildViewportChrome()
+}
+
+"flutter::src::widgets::scroll_configuration.dart::ScrollBehavior" <|-- "e_contract::utils::utils.dart::BkavBehavior"
+
+class "e_contract::utils::logger.dart::Logger" {
+  {static} -String _tag
+  {static} -bool _isDebug
+  {static} +void loggerDebug()
+}
+
+abstract class "e_contract::utils::form_submission_status.dart::FormSubmissionStatus" {
+}
+
+class "e_contract::utils::form_submission_status.dart::InitialFormStatus" {
+}
+
+"e_contract::utils::form_submission_status.dart::FormSubmissionStatus" <|-- "e_contract::utils::form_submission_status.dart::InitialFormStatus"
+
+class "e_contract::utils::form_submission_status.dart::FormSubmitting" {
+}
+
+"e_contract::utils::form_submission_status.dart::FormSubmissionStatus" <|-- "e_contract::utils::form_submission_status.dart::FormSubmitting"
+
+class "e_contract::utils::form_submission_status.dart::SubmissionSuccess" {
+}
+
+"e_contract::utils::form_submission_status.dart::FormSubmissionStatus" <|-- "e_contract::utils::form_submission_status.dart::SubmissionSuccess"
+
+class "e_contract::utils::form_submission_status.dart::SubmissionFailed" {
+  +String exception
+}
+
+"e_contract::utils::form_submission_status.dart::FormSubmissionStatus" <|-- "e_contract::utils::form_submission_status.dart::SubmissionFailed"
+
+class "e_contract::utils::validator.dart::Validator" {
+  {static} -String _emailRule
+  {static} -String _passwordRule
+  {static} +String emailValidator()
+  {static} +String passwordValidator()
+}
+
+class "e_contract::main.dart::EContractApp" {
+  +Repository repository
+  +Widget build()
+}
+
+class "e_contract::main.dart::_EContractAppView" {
+  +_EContractAppState createState()
+}
+
+
+class "e_contract::main.dart::_EContractAppState" {
+  -GlobalKey<NavigatorState> _navigatorKey
+  -NavigatorState _navigator
+  +Widget build()
+}
+
+
+class "e_contract::data::repository_impl.dart::RepositoryImpl" {
+  +ApiProvider accountApi
+  +List<ContractDocFrom> listCache
+  +bool authenticated()
+  +UserInfo getUserInfo()
+  +Future<ApiResponse> loginWithPassword()
+  -AndroidOptions _getAndroidOptions()
+  +Future<String?> getPassLogin()
+  +Future<void> savePassLogin()
+  +Future<List<TextDetail>> getDetailContractFrom()
+  +Stream<List<ContractDocFrom>> getListContractsFrom()
+  +List<ContractDocFrom> parseListContractsFrom()
+  +List<TextDetail> parseListTextDetail()
+  +Future<String> getDocumentContent()
+  +Future<List<HistoryModel>> showHistoryAContract()
+  +List<HistoryModel> parseListHistory()
+  +Future<List<CopyAddressModel>> showCopyAddressContract()
+  +List<CopyAddressModel> parseListCopyAddress()
+}
+
+"e_contract::data::repository_impl.dart::RepositoryImpl" o-- "e_contract::data::network::api_provider.dart::ApiProvider"
+"e_contract::data::repository.dart::Repository" <|-- "e_contract::data::repository_impl.dart::RepositoryImpl"
+
+class "e_contract::data::entity::contract_doc_from.dart::ContractDocFrom" {
+}
+
+"e_contract::data::entity::contract_docs.dart::ContractDocs" <|-- "e_contract::data::entity::contract_doc_from.dart::ContractDocFrom"
+
+abstract class "e_contract::data::entity::contract_docs.dart::ContractDocs" {
+  +String? contractGuid
+  +String? contractName
+  +String? sampleContractName
+  +List<Signer>? signers
+  +int? contractStatus
+  +String? lastUpdate
+  +String? signDeadline
+  +String? createdDate
+  +String? timeRefusingSign
+  +String? timeCancelled
+  +String? timeCompleted
+  +bool? isTimeLimit
+  +Map<String, bool>? buttonShow
+  +bool? isUseProfileType
+  +String? sourceName
+  +int? sourceId
+  +String? code
+  +String? profileTypeName
+  +int? profileTypeId
+  +String? profileTypeGuid
+  +Creator? creator
+  {static} +List<Signer> parseListSigner()
+}
+
+"e_contract::data::entity::contract_docs.dart::ContractDocs" o-- "e_contract::data::entity::creator.dart::Creator"
+
+class "e_contract::data::entity::list_text.dart::TextInList" {
+  +String textName
+}
+
+class "e_contract::data::entity::signer.dart::Signer" {
+  +String? objectGuid
+  +int statusSign
+  +int statusView
+  +String? signerName
+  +int typeSignId
+  +String? signDate
+  +String? unitCode2
+}
+
+class "e_contract::data::entity::history_model.dart::HistoryModel" {
+  +int id
+  +String createDate
+  +String ip
+  +int userId
+  +String account
+  +String objectGuid
+  +String logContent
+}
+
+class "e_contract::data::entity::creator.dart::Creator" {
+  +int id
+  +String? userName
+  +String? fullName
+}
+
+class "e_contract::data::entity::user_info.dart::UserInfo" {
+  +int? userId
+  +String? userName
+  +bool? isRememberPassword
+  +String? token
+  +int? unitId
+  +String? unitCode
+  +String? phone
+  +String? fullName
+  +String? userNameShow
+  +String? email
+  +bool? isActive
+  +String? unitName
+  +List<Object?> props
+}
+
+
+class "e_contract::data::entity::copy_address_model.dart::CopyAddressModel" {
+  +String signer
+  +String address
+  +String deadline
+}
+
+class "e_contract::data::entity::contract_doc_to.dart::ContractDocsTo" {
+}
+
+"e_contract::data::entity::contract_docs.dart::ContractDocs" <|-- "e_contract::data::entity::contract_doc_to.dart::ContractDocsTo"
+
+class "e_contract::data::entity::text_detail.dart::TextDetail" {
+  +String objectGuid
+  +String fileName
+  +List<Signer> profileItemSigner
+}
+
+class "e_contract::data::network::api_reponse.dart::ApiResponse" {
+  +int status
+  +dynamic object
+  +bool isOk
+  +bool isError
+}
+
+class "e_contract::data::network::api_provider.dart::ApiProvider" {
+  {static} +Future<ApiResponse> login()
+  {static} +Future<ApiResponse> getListContractsFrom()
+  {static} +Future<ApiResponse> getDetailContract()
+  {static} +Future<ApiResponse> getDoccumentContent()
+  {static} +Future<ApiResponse> showHistoryAContract()
+  {static} +Future<ApiResponse> showCopyAddress()
+}
+
+class "e_contract::data::fake_repository_impl.dart::FakeRepositoryImpl" {
+  +bool authenticated()
+  +UserInfo getUserInfo()
+  +Future<ApiResponse> loginWithPassword()
+  +Future<String?> getPassLogin()
+  +Future<void> savePassLogin()
+  +Future<List<TextDetail>> getDetailContractFrom()
+  +Stream<List<ContractDocFrom>> getListContractsFrom()
+  +Future<String> getDocumentContent()
+  +Future<List<HistoryModel>> showHistoryAContract()
+  +Future<List<CopyAddressModel>> showCopyAddressContract()
+}
+
+"e_contract::data::repository.dart::Repository" <|-- "e_contract::data::fake_repository_impl.dart::FakeRepositoryImpl"
+
+abstract class "e_contract::data::repository.dart::Repository" {
+  +StreamController<AuthenticationStatus> controlerAuthentication
+  +Stream<AuthenticationStatus> status
+  +void dispose()
+  +bool authenticated()
+  +UserInfo getUserInfo()
+  +Future<ApiResponse> loginWithPassword()
+  +Future<String?> getPassLogin()
+  +Future<void> savePassLogin()
+  +Stream<List<ContractDocFrom>> getListContractsFrom()
+  +Future<List<TextDetail>> getDetailContractFrom()
+  +Future<String> getDocumentContent()
+  +Future<List<HistoryModel>> showHistoryAContract()
+  +Future<List<CopyAddressModel>> showCopyAddressContract()
+}
+
+"e_contract::data::repository.dart::Repository" o-- "dart::async::StreamController<AuthenticationStatus>"
+"e_contract::data::repository.dart::Repository" o-- "dart::async::Stream<AuthenticationStatus>"
+
+class "e_contract::data::repository.dart::AuthenticationStatus" {
+  +int index
+  {static} +List<AuthenticationStatus> values
+  {static} +AuthenticationStatus unknown
+  {static} +AuthenticationStatus authenticated
+  {static} +AuthenticationStatus unauthenticated
+}
+
+"e_contract::data::repository.dart::AuthenticationStatus" o-- "e_contract::data::repository.dart::AuthenticationStatus"
+
+class "e_contract::widgets::button_widget.dart::BkavButton" {
+  +String text
+  +void Function()? onPressed
+  +void Function()? onLongPressed
+  +Color? color
+  +Widget build()
+}
+
+class "e_contract::widgets::item_contract_in_list.dart::ContractItem" {
+  +void Function()? onTap
+  +ContractUIModel contractUIModel
+  +Widget build()
+}
+
+"e_contract::widgets::item_contract_in_list.dart::ContractItem" o-- "dart::ui::void Function()"
+"e_contract::widgets::item_contract_in_list.dart::ContractItem" o-- "e_contract::stores::ui_models::contract_ui_model.dart::ContractUIModel"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "e_contract::widgets::item_contract_in_list.dart::ContractItem"
+
+class "e_contract::widgets::text_form_input.dart::TextFormFieldInput" {
+  -String _label
+  -TextEditingController _textEditingController
+  -bool _isTypePassword
+  -bool _errorNotShowtext
+  -FocusNode _focusNode
+  +State<StatefulWidget> createState()
+}
+
+class "e_contract::widgets::text_form_input.dart::_TextFormFieldInputState" {
+  -bool _showDeleteText
+  -bool _obscureText
+  -bool _showAsterisk
+  -bool _textIsNotEmpty
+  -bool _validatorTextIsEmpty
+  -bool _hasFocus
+  +void initState()
+  +void dispose()
+  +void showAsterrick()
+  +void textIsNotEmplty()
+  +InputDecoration createInputDecoration()
+  +void showDeleteText()
+  +Widget build()
+}
+@enduml

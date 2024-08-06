@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "718781710156",
+    "project_id": "econtract-product",
+    "storage_bucket": "econtract-product.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718781710156:android:7e182bd2caecfc3f2959e9",
+        "android_client_info": {
+          "package_name": "com.bkav.econtract"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718781710156-ot2t7rr5s5utjnmttvk2172581hl6rsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMqm7EjrSqEdStFRzS0S4o53yhiXftOFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718781710156-ot2t7rr5s5utjnmttvk2172581hl6rsc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718781710156-5qmam99s7lqj2lq09evq9augpfla9ppj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bkav.econtract"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
